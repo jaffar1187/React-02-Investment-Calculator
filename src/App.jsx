@@ -1,7 +1,13 @@
-function App() {
-  return (
-    <h1>React Investment Calculator</h1>
-  )
-}
+import { Header } from "./components/Header";
+import { UserInput } from "./components/UserInput";
 
-export default App
+const App = () => {
+  return (
+    <>
+      <Header />
+      <UserInput />
+    </>
+  );
+};
+
+export default App;
