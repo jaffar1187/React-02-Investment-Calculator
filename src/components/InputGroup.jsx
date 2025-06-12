@@ -1,21 +1,24 @@
-import defaultInputValues from "../util/defaultInputValues";
-
 const InputGroup = ({ labelPlaceHolderArr, userInputData }) => {
-  let { initialFirstInputValue, initialSecondInputValue } = defaultInputValues(
-    labelPlaceHolderArr,
-    userInputData
-  );
-
   return (
     <div className="input-group">
-      <p>
-        <label htmlFor="">{labelPlaceHolderArr[0]}</label>
-        <input type="number" required value={initialFirstInputValue} />
-      </p>
-      <p>
-        <label htmlFor="">{labelPlaceHolderArr[1]}</label>
-        <input type="number" required value={initialSecondInputValue} />
-      </p>
+      {labelPlaceHolderArr.map((item, index) => {
+        return (
+          <p key={index}>
+            <label>{item}</label>
+            <input
+              type="number"
+              required
+              defaultValue={
+                userInputData[
+                  item.split(" ")[1]
+                    ? item.split(" ")[0].toLowerCase() + item.split(" ")[1]
+                    : item.toLowerCase()
+                ]
+              }
+            />
+          </p>
+        );
+      })}
     </div>
   );
 };
