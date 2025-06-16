@@ -15,10 +15,12 @@ export const UserInput = () => {
       <InputGroup
         labelPlaceHolderArr={["Initial Investment", "Annual Investment"]}
         userInputData={userInputData}
+        setUserInputData={setUserInputData}
       />
       <InputGroup
         labelPlaceHolderArr={["Expected Return", "Duration"]}
         userInputData={userInputData}
+        setUserInputData={setUserInputData}
       />
     </section>
   );
