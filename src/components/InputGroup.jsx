@@ -6,7 +6,6 @@ const InputGroup = ({
   setUserInputData,
 }) => {
   function handleChange(identifier, newValue) {
-    console.log("rendered");
     setUserInputData((prevValue) => {
       const updatedValue = { ...prevValue };
       updatedValue[identifier] = Number(newValue);
@@ -17,12 +16,10 @@ const InputGroup = ({
   return (
     <div className="input-group">
       {labelPlaceHolderArr.map((item, index) => {
-        let identifier =
-          userInputData[
-            item.split(" ")[1]
-              ? item.split(" ")[0].toLowerCase() + item.split(" ")[1]
-              : item.toLowerCase()
-          ];
+        let identifierKey = item.split(" ")[1]
+          ? item.split(" ")[0].toLowerCase() + item.split(" ")[1]
+          : item.toLowerCase();
+        let identifierDefaultValue = userInputData[identifierKey];
 
         return (
           <p key={index}>
@@ -31,9 +28,12 @@ const InputGroup = ({
               type="number"
               required
               onChange={(e) =>
-                debounce(handleChange, identifier, e.target.value)
+                debounce(handleChange, {
+                  identifierKey,
+                  newValue: e.target.value,
+                })
               }
-              defaultValue={identifier}
+              defaultValue={identifierDefaultValue}
             />
           </p>
         );

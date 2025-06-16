@@ -1,9 +1,9 @@
 let timer;
 
-const debounce = (handleChange, identifier, newValue) => {
+const debounce = (handleChange, { ...inputs }) => {
   if (timer) clearTimeout(timer);
   timer = setTimeout(() => {
-    handleChange(identifier, newValue);
+    handleChange(inputs.identifierKey, inputs.newValue);
   }, 750);
 };
 
