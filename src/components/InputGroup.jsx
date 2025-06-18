@@ -9,6 +9,7 @@ const InputGroup = ({
     setUserInputData((prevValue) => {
       const updatedValue = { ...prevValue };
       updatedValue[identifier] = Number(newValue);
+      console.log(updatedValue);
       return updatedValue;
     });
   }
@@ -19,7 +20,6 @@ const InputGroup = ({
         let identifierKey = item.split(" ")[1]
           ? item.split(" ")[0].toLowerCase() + item.split(" ")[1]
           : item.toLowerCase();
-        let identifierDefaultValue = userInputData[identifierKey];
 
         return (
           <p key={index}>
@@ -29,11 +29,13 @@ const InputGroup = ({
               required
               onChange={(e) =>
                 debounce(handleChange, {
-                  identifierKey,
+                  identifierKey: identifierKey,
                   newValue: e.target.value,
+                  timeMs: 1000,
+                  test: { name: "Jaffar" },
                 })
               }
-              defaultValue={identifierDefaultValue}
+              value={userInputData[identifierKey]}
             />
           </p>
         );
